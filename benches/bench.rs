@@ -2,18 +2,15 @@ use std::time::Duration;
 
 use criterion::*;
 
-
-const INPUT: usize = 1;
-
 fn criterion_benchmark(c: &mut Criterion) {
     let mut group = c.benchmark_group("flat-sampling");
     group.sampling_mode(SamplingMode::Flat);
 
-    group.bench_function("sieve u8", |b| b.iter(|| erasto::sieve_u8_d(black_box(INPUT))));
-    group.bench_function("sieve u8d", |b| b.iter(|| erasto::sieve_u8_d(black_box(INPUT))));
-    group.bench_function("sieve u8 init", |b| b.iter(|| erasto::sieve_u8_init(black_box(INPUT))));
-    group.bench_function("sieve bools", |b| b.iter(|| erasto::sieve_bools(black_box(INPUT))));
-    group.bench_function("sieve bools dist", |b| b.iter(|| erasto::sieve_bools_dist(black_box(INPUT))));
+    group.bench_function("sieve u8", |b| b.iter(|| erasto::sieve_u8_d()));
+    group.bench_function("sieve u8d", |b| b.iter(|| erasto::sieve_u8_d()));
+    group.bench_function("sieve u8 init", |b| b.iter(|| erasto::sieve_u8_init()));
+    group.bench_function("sieve bools", |b| b.iter(|| erasto::sieve_bools()));
+    group.bench_function("sieve bools dist", |b| b.iter(|| erasto::sieve_bools_dist()));
 
     group.finish();
 }
